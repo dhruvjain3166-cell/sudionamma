@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Namma — Home</title>
+  <link rel="stylesheet" href="./nav.css">
+  <style>
+    .section {
+      border: 3px solid black;
+      font-size: 250%;
+    }
+
+    .section > iframe {
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    .gallery-grid > div > img {
+      width: 100%;
+    }
+
+    .slide-left {
+      transform: translateX(-50%) translateY(40%) rotateZ(-20deg);
+      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .slide-right {
+      transform: translateX(50%) translateY(40%) rotateZ(20deg);
+      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .gallery-grid > .show > img {
+      transform: translateX(0);
+    }
+
+    #video-preview {
+      position: fixed;
+      left: 0;
+      top: 0;
+      transform: translate(0%, 0%);
+      border: 2px solid black;
+      z-index: 9999;
+      width: 100px;
+      height: 180px;
+      display: none;
+      transition: width .3s cubic-bezier(0.65, 0, 0.35, 1), height .3s cubic-bezier(0.65, 0, 0.35, 1);
+      pointer-events: none;
+    }
+
+    #video-preview iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .showcase h1 {
+      transition: color 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progress-bar"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="brand">Studio<span>Namma</span></a>
+
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Talk With Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="themeSwitch" class="theme-switch" aria-label="Toggle dark mode">🌙</button>
+      <button id="menuToggle" class="menu-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="pointer"></div>
+
+  <div id="video-preview">
+    <iframe src="https://player.vimeo.com/video/1127104834?background=1&autoplay=1&muted=1&loop=1" frameborder="0"
+      allow="autoplay; fullscreen">
+    </iframe>
+  </div>
+
+  <section class="section">
+    <div class="glow"></div>
+    <h1 class="animate">WE THINK</h1>
+    <h1 class="animate">CRAFT AND</h1>
+    <h1 class="animate">DESIGN</h1>
+  </section>
+
+  <section class="section">
+    <iframe
+      src="https://player.vimeo.com/video/1127104834?background=1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1"
+      frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" title="Showreel_Namma_EN" data-ready="true">
+    </iframe>
+  </section>
+
+  <section class="section">
+    <p class="reveal-up">Creative studio building premium Brands</p>
+    <h2 class="animate">It's never "just a website."
+      Every detail matters.
+      We craft digital experiences.
+      Your design. Our obsession.
+      Your brand. Our playground.</h2>
+  </section>
+
+  <section class="section">
+    <div class="glow"></div>
+    <h1 class="animate">PLAYGROUND</h1>
+  </section>
+
+
+  <section class="gallery-grid">
+    <div>
+      <img class="slide-left"
+        src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68beb68ead192a24f9ad4372_silvr%20case%20cover%20(1).webp"
+        alt="">
+    </div>
+    <div>
+      <img class="slide-right"
+        src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68beb68ead192a24f9ad4372_silvr%20case%20cover%20(1).webp"
+        alt="">
+    </div>
+    <div>
+      <img class="slide-left"
+        src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68beb68ead192a24f9ad4372_silvr%20case%20cover%20(1).webp"
+        alt="">
+    </div>
+    <div>
+      <img class="slide-right"
+        src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68beb68ead192a24f9ad4372_silvr%20case%20cover%20(1).webp"
+        alt="">
+    </div>
+  </section>
+
+
+  <section class="section showcase">
+    <h1 class="animate">ART DIRECTION</h1>
+    <h1 class="animate">BRANDING</h1>
+    <h1 class="animate">WEBFLOW</h1>
+  </section>
+
+  <script src="./nav.js"></script>
+
+  <script>
+    let observer2 = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting == true) {
+          entry.target.classList.add("show")
+        }
+      })
+    })
+
+    let images = document.querySelectorAll(".gallery-grid > div");
+
+    images.forEach((img) => {
+      observer2.observe(img)
+    })
+
+
+    let list = document.querySelectorAll(".showcase > h1");
+
+    list.forEach((element) => {
+      element.addEventListener("mouseenter", (event) => {
+        list.forEach((text) => {
+          if (text.innerText == event.target.innerText) {
+            text.style.color = "black"
+          }
+          else {
+            text.style.color = "gray"
+          }
+        })
+      })
+    })
+
+
+    const pointer = document.getElementById("pointer");
+    let videoPreview = document.getElementById("video-preview")
+
+    document.addEventListener("mousemove", (e) => {
+      videoPreview.style.left = e.clientX + "px";
+      videoPreview.style.top = e.clientY + "px";
+    });
+
+    const sections = document.querySelectorAll(".section");
+
+    sections.forEach((section, index) => {
+      section.addEventListener("mouseenter", () => {
+        if (index === 0) {
+          videoPreview.style.transform = "translate(20%, 20%)";
+          videoPreview.style.display = "block";
+          pointer.style.display = "none"
+        } else {
+          pointer.style.display = "block"
+          videoPreview.style.display = "none";
+        }
+      });
+
+      section.addEventListener("mouseleave", () => {
+        videoPreview.style.display = "none";
+        pointer.style.display = "block"
+      });
+    });
+  </script>
+</body>
+
+</html>

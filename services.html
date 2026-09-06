@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Namma — Services</title>
+  <link rel="stylesheet" href="./nav.css">
+  <style>
+    .intro-section h1 {
+      font-size: 56px;
+      max-width: 800px;
+    }
+
+    .listing-group {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 120px;
+    }
+
+    .listing-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 36px 12px;
+      border-bottom: 1.5px solid var(--gray);
+      cursor: pointer;
+      transition: padding-left 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .listing-item:first-child {
+      border-top: 1.5px solid var(--gray);
+    }
+
+    .listing-item:hover {
+      padding-left: 24px;
+    }
+
+    .listing-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      margin: 0;
+      transition: color 0.3s ease;
+    }
+
+    .listing-item:hover h3 {
+      color: var(--accent);
+    }
+
+    .listing-index {
+      color: var(--gray);
+      font-size: 14px;
+      min-width: 32px;
+    }
+
+    .listing-detail {
+      color: var(--gray);
+      font-size: 15px;
+      max-width: 320px;
+      text-align: right;
+    }
+
+    @media (max-width: 768px) {
+      .intro-section h1 {
+        font-size: 34px;
+      }
+
+      .listing-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .listing-detail {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progress-bar"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="brand">Studio<span>Namma</span></a>
+
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Talk With Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="themeSwitch" class="theme-switch" aria-label="Toggle dark mode">🌙</button>
+      <button id="menuToggle" class="menu-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="pointer"></div>
+
+  <section class="section intro-section">
+    <div class="glow"></div>
+    <h1 class="animate">What we do, and how we do it.</h1>
+  </section>
+
+  <section class="listing-group">
+    <div class="listing-item reveal-up">
+      <span class="listing-index">01</span>
+      <h3>Branding</h3>
+      <p class="listing-detail">Identity systems, logo design, and the guidelines that keep a brand consistent everywhere it shows up.</p>
+    </div>
+    <div class="listing-item reveal-up">
+      <span class="listing-index">02</span>
+      <h3>Art Direction</h3>
+      <p class="listing-detail">Photography, illustration, and visual language that gives a brand a distinct point of view.</p>
+    </div>
+    <div class="listing-item reveal-up">
+      <span class="listing-index">03</span>
+      <h3>Webflow Development</h3>
+      <p class="listing-detail">Fast, animated, responsive websites built and shipped in Webflow.</p>
+    </div>
+    <div class="listing-item reveal-up">
+      <span class="listing-index">04</span>
+      <h3>UI / UX Design</h3>
+      <p class="listing-detail">Interfaces for products and apps that are as easy to use as they are to look at.</p>
+    </div>
+  </section>
+
+  <script src="./nav.js"></script>
+</body>
+
+</html>

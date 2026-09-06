@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Namma — Talk With Us</title>
+  <link rel="stylesheet" href="./nav.css">
+  <style>
+    .intro-section h1 {
+      font-size: 56px;
+      max-width: 700px;
+    }
+
+    #greeting {
+      color: var(--accent);
+      font-size: 18px;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .inquiry-form {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 40px 24px 140px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .field label {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .field input,
+    .field textarea {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1.5px solid var(--gray);
+      background: transparent;
+      color: var(--text);
+      transition: border-color 0.3s cubic-bezier(0.65, 0, 0.35, 1), transform 0.2s ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      transform: scale(1.01);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .validation-msg {
+      color: #e5484f;
+      font-size: 13px;
+      display: none;
+    }
+
+    .primary-action {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.3s ease;
+    }
+
+    .primary-action:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.35);
+    }
+
+    .primary-action:active {
+      transform: translateY(0);
+    }
+
+    #confirmation {
+      display: none;
+      text-align: center;
+      padding: 60px 24px 140px;
+    }
+
+    #confirmation h2 {
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progress-bar"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="brand">Studio<span>Namma</span></a>
+
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Talk With Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="themeSwitch" class="theme-switch" aria-label="Toggle dark mode">🌙</button>
+      <button id="menuToggle" class="menu-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="pointer"></div>
+
+  <section class="section intro-section">
+    <div class="glow"></div>
+    <h1 class="animate">Got a project? Let's talk about it.</h1>
+    <p id="greeting"></p>
+  </section>
+
+  <form class="inquiry-form" id="inquiryForm">
+    <div class="field reveal-up">
+      <label for="nameInput">Your name</label>
+      <input type="text" id="nameInput" placeholder="Jane Doe">
+      <span class="validation-msg" id="nameError">Please enter your name.</span>
+    </div>
+
+    <div class="field reveal-up">
+      <label for="emailInput">Email</label>
+      <input type="text" id="emailInput" placeholder="jane@email.com">
+      <span class="validation-msg" id="emailError">Please enter a valid email.</span>
+    </div>
+
+    <div class="field reveal-up">
+      <label for="messageInput">What are you looking to build?</label>
+      <textarea id="messageInput" placeholder="Tell us a bit about your project..."></textarea>
+      <span class="validation-msg" id="messageError">Please write a short message.</span>
+    </div>
+
+    <button type="submit" class="primary-action pulse">Send Message</button>
+  </form>
+
+  <section id="confirmation">
+    <h2 class="animate show">Thanks — we'll be in touch soon.</h2>
+  </section>
+
+  <script src="./nav.js"></script>
+
+  <script>
+    let nameInput = document.getElementById("nameInput");
+    let emailInput = document.getElementById("emailInput");
+    let messageInput = document.getElementById("messageInput");
+    let inquiryForm = document.getElementById("inquiryForm");
+    let confirmation = document.getElementById("confirmation");
+    let greeting = document.getElementById("greeting");
+
+    let savedName = localStorage.getItem("visitorName");
+
+    if (savedName) {
+      greeting.textContent = "Welcome back, " + savedName + "!";
+      greeting.style.display = "block";
+      nameInput.value = savedName;
+    }
+
+    inquiryForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      let isValid = true;
+
+      if (nameInput.value.trim() === "") {
+        document.getElementById("nameError").style.display = "block";
+        isValid = false;
+      } else {
+        document.getElementById("nameError").style.display = "none";
+      }
+
+      if (emailInput.value.trim() === "" || emailInput.value.includes("@") === false) {
+        document.getElementById("emailError").style.display = "block";
+        isValid = false;
+      } else {
+        document.getElementById("emailError").style.display = "none";
+      }
+
+      if (messageInput.value.trim().length < 5) {
+        document.getElementById("messageError").style.display = "block";
+        isValid = false;
+      } else {
+        document.getElementById("messageError").style.display = "none";
+      }
+
+      if (isValid === true) {
+        localStorage.setItem("visitorName", nameInput.value.trim());
+
+        inquiryForm.style.display = "none";
+        confirmation.style.display = "block";
+      }
+    });
+  </script>
+</body>
+
+</html>
