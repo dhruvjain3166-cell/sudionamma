@@ -66,6 +66,23 @@
     .showcase h1 {
       transition: color 0.3s ease;
     }
+
+    .video-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.video-section iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
   </style>
 </head>
 
@@ -105,7 +122,7 @@
     <h1 class="animate">DESIGN</h1>
   </section>
 
-  <section class="section">
+  <section class="video-section">
     <iframe
       src="https://player.vimeo.com/video/1127104834?background=1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1"
       frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
